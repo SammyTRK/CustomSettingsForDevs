@@ -1,4 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    
+    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Screen Off Volume Buttons Music Control " >
+        <SwitchPreference
+            android:title="Music Control On/Off "
+            android:summaryOn="Active "
+            android:summaryOff="Inactive "
+            android:key="volbtn_music_controls"
+            android:defaultValue="false" />
+        <com.wubydax.romcontrol.prefs.MyListPreference
+            android:entries="@array/volbtn_timeout_entries"
+            android:title="Button Delay "
+            android:key="volbtn_timeout"
+            android:summary="%s"
+            android:defaultValue="350"
+            android:dependency="volbtn_music_controls"
+            android:entryValues="@array/volbtn_timeout_values" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Page Transition Effects (Reboot Required) " >
+        <com.wubydax.romcontrol.prefs.MyListPreference
+            android:entries="@array/tw_effect_entries"
+            android:title="Touchwiz Page Effect"
+            android:key="tw_page_effect"
+            android:defaultValue="1"
+            android:entryValues="@array/tw_effect_values" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Gesture Anywhere on Home screen (Reboot Required) " >
+    <com.wubydax.romcontrol.prefs.MyListPreference
+        android:entries="@array/launcher_gesture_entries"
+        android:title="Double Tap "
+        android:key="doubletap"
+        android:summary="%s"
+        android:entryValues="@array/launcher_gesture_values" />
+    <com.wubydax.romcontrol.prefs.MyListPreference
+        android:entries="@array/launcher_gesture_entries"
+        android:title="Swipe Up "
+        android:key="swipe_up"
+        android:summary="%s"
+        android:entryValues="@array/launcher_gesture_values" />
+    <com.wubydax.romcontrol.prefs.MyListPreference
+        android:entries="@array/launcher_gesture_entries"
+        android:title="Swipe Down "
+        android:key="swipe_down"
+        android:summary="%s"
+        android:entryValues="@array/launcher_gesture_values" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

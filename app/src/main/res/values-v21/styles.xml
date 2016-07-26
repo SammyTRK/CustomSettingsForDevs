@@ -15,7 +15,7 @@
         <item name="nav_drawer_header">@drawable/header_image</item>
         <item name="android:windowBackground">@color/myInverseColor</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="nav_drawer_bg_color">#ff1a292c</item>
+        <item name="nav_drawer_bg_color">#121212</item>
         <item name="myAccentColor">@color/myAccentColor</item>
     </style>
     <style name="AppThemeLight" parent="Theme.AppCompat.Light.NoActionBar">

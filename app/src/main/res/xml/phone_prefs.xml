@@ -1,20 +1,432 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory
+        android:title="Expanded Notification Device Info Settings ">
+        <PreferenceScreen
+            android:title="Device Info Customization ">
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="device_info_visibility"
+                android:summaryOff="Disabled"
+                android:summaryOn="Enabled"
+                android:title="Enable device Info View"/>
+            <PreferenceCategory
+                android:title="Text Colors"
+                android:dependency="device_info_visibility">
+                <com.wubydax.romcontrol.prefs.ColorPickerPreference
+                    android:defaultValue="#ffffffff"
+                    android:key="gear_info_names_color"
+                    android:title="Info Names Text Color"
+                    alphaSlider="true"
+                    hexValue="true"  />
+                <com.wubydax.romcontrol.prefs.ColorPickerPreference
+                    android:defaultValue="#ffffffff"
+                    android:key="gear_info_values_color"
+                    android:title="Info Values Text Color"
+                    alphaSlider="true"
+                    hexValue="true"  />
+            </PreferenceCategory>
+            <PreferenceCategory
+                android:title="Device Info Items"
+                android:dependency="device_info_visibility">
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="device_model"
+                    android:summaryOff="Hidden"
+                    android:summaryOn="Shown"
+                    android:title="Device Model"/>
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="device_android_version"
+                    android:summaryOff="Hidden"
+                    android:summaryOn="Shown"
+                    android:title="Android Version"/>
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="device_build_version"
+                    android:summaryOff="Hidden"
+                    android:summaryOn="Shown"
+                    android:title="Build Version"/>
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="device_battery_level"
+                    android:summaryOff="Hidden"
+                    android:summaryOn="Shown"
+                    android:title="Battery Level"/>
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="device_network_name"
+                    android:summaryOff="Hidden"
+                    android:summaryOn="Shown"
+                    android:title="Network Name"/>
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="device_wifi_info"
+                    android:summaryOff="Hidden"
+                    android:summaryOn="Shown"
+                    android:title="WIFI Info"/>
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="device_next_alarm"
+                    android:summaryOff="Hidden"
+                    android:summaryOn="Shown"
+                    android:title="Next Alarm"/>
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="device_up_time"
+                    android:summaryOff="Hidden"
+                    android:summaryOn="Shown"
+                    android:title="Device Up Time"/>
+            </PreferenceCategory>
+            <PreferenceCategory
+                android:title="Carrier Label Text Preferences ">
+                <SwitchPreference
+                    android:title="Carrier Label Visibility "
+                    android:defaultValue="true"
+                    android:summaryOff="Hidden"
+                    android:summaryOn="Shown"
+                    android:key="carrier_label_visibility"/>
+                <com.wubydax.romcontrol.prefs.ColorPickerPreference
+                    android:dependency="carrier_label_visibility"
+                    android:defaultValue="#ffffff"
+                    android:key="carrier_label_text_color"
+                    android:title="Carrier Label Text Color"
+                    alphaSlider="true"
+                    hexValue="true"  />
+                <com.wubydax.romcontrol.prefs.MyListPreference
+                    android:title="Carrier Label Text"
+                    android:entries="@array/carrier_entries"
+                    android:entryValues="@array/carrier_entry_values"
+                    android:defaultValue="0"
+                    android:key="is_custom_carrier_label"
+                    android:dependency="carrier_label_visibility"/>
+                <com.wubydax.romcontrol.prefs.MyEditTextPreference
+                    android:title="Custom Text for Carrier Label"
+                    android:defaultValue="Custom Text"
+                    android:dependency="is_custom_carrier_label"
+                    android:key="custom_carrier_label"/>
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Custom Carrier Text and Color " >
+    <CheckBoxPreference
+        android:title="Use Custom Carrier Text"
+        android:key="custom_lock_carrier"
+        android:defaultValue="false"
+        android:summaryOn="Enabled"
+        android:summaryOff="Disabled" />
+    <com.wubydax.romcontrol.prefs.MyEditTextPreference
+        android:title="Carrier Custom Text"
+        android:key="custom_lock_carrier_text"
+        android:summary="Edit carrier label"
+        android:dependency="custom_lock_carrier"
+        android:defaultValue=""
+        android:dialogTitle="Set Custom Text" />
     <com.wubydax.romcontrol.prefs.ColorPickerPreference
-        android:key="dialer_num_color"
-        android:title="Choose Dialer Num Color"
-        android:defaultValue="#0000ff"
-        alphaSlider="true"/>
+        android:title="Carrier Text"
+        hexValue="true"
+        alphaSlider="true"
+        android:defaultValue="\#ffffffff"
+        android:key="carrier_color"
+        android:summary="Choose carrier color" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Global Statusbar Icons Color " >
     <SwitchPreference
-        android:defaultValue="true"
-        android:key="call_recording"
-        android:summaryOff="Call recording disabled"
-        android:summaryOn="Callrecording enabled"
-        android:title="Enable/Disable Call Recording" />
-    <com.wubydax.romcontrol.prefs.MyListPreference
-        android:defaultValue="2"
-        android:entries="@array/some_entries"
-        android:entryValues="@array/some_values"
-        android:key="some_position"
-        android:title="Some Position" />
-</PreferenceScreen>
+        android:title="Use Global Color"
+        android:key="sb_global_toggle"
+        android:defaultValue="false"
+        android:summaryOn="Enabled"
+        android:summaryOff="Disabled" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Statusbar Global Color"
+        android:key="sb_global_color"
+        android:defaultValue="\#ffffffff"
+        hexValue="true"
+        alphaSlider="true"
+        android:dependency="sb_global_toggle"
+        android:summary="Choose universal color" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Individual Statusbar Icon Colors " >
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="WiFi Icon Color"
+        android:key="statusbar_wifi_color"
+        android:defaultValue="\#ffffffff"
+        hexValue="true"
+        alphaSlider="true"
+        android:summary="Choose color of wifi icon" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Signalbar Icon Color"
+        android:key="statusbar_signal_color"
+        android:defaultValue="\#ffffffff"
+        hexValue="true"
+        alphaSlider="true"
+        android:summary="Choose color of signalbars" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Data Icon Color"
+        android:key="statusbar_data_color"
+        android:defaultValue="\#ffffffff"
+        hexValue="true"
+        alphaSlider="true"
+        android:summary="Choose color of 3G/4G/LTE data icon" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Notification Icons Color"
+        android:key="statusbar_icon_color"
+        android:defaultValue="\#ffffffff"
+        hexValue="true"
+        alphaSlider="true"
+        android:summary="Choose color of volume, bluetooth, popups, etc.." />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Quick Toggles Color " >
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Toggle On Color (Default #ff368cd8) "
+        android:key="toggle_icon_on_color"
+        android:defaultValue="\#ff368cd8"
+        hexValue="true"
+        alphaSlider="true"
+        android:summary="Choose color" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Toggle Off Color (Default #ff97a6b3) "
+        android:key="toggle_icon_off_color"
+        android:defaultValue="\#ff97a6b3"
+        hexValue="true"
+        alphaSlider="true"
+        android:summary="Choose color" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Quick Toggle Text Color " >
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Toggle Text Color (Default #ff325d84) "
+        android:key="toggle_text_color"
+        android:defaultValue="\#FF325D84"
+        hexValue="true"
+        alphaSlider="true"
+        android:summary="Choose color" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Data Usage View Options ">
+        <SwitchPreference
+            android:title="Data Usage Visibility "
+            android:summaryOff="Hidden"
+            android:summaryOn="Shown"
+            android:key="data_usage_visibility"
+            android:defaultValue="true"/>
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Data Usage Text Color "
+            android:key="data_usage_text_color"
+            android:dependency="data_usage_visibility"
+            android:summary="Choose color"
+            android:defaultValue="#e61e4e78"
+            alphaSlider="true"
+            hexValue="true"  />
+        <com.wubydax.romcontrol.prefs.MyListPreference
+            android:title="Data Usage Text Gravity "
+            android:key="data_usage_text_gravity"
+            android:dependency="data_usage_visibility"
+            android:entries="@array/data_usage_gravity_entries"
+            android:entryValues="@array/data_usage_gravity_values"
+            android:defaultValue="0"/>
+        <com.wubydax.romcontrol.prefs.MyListPreference
+            android:title="Data Usage Text Style "
+            android:key="data_usage_view_text_style"
+            android:dependency="data_usage_visibility"
+            android:entries="@array/data_usage_text_style_entries"
+            android:entryValues="@array/data_usage_text_style_values"
+            android:defaultValue="0"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Expanded StatusBar Colors / Clock &amp; Date " >
+    <SwitchPreference
+        android:title="Enable to Apply Colors"
+        android:key="link_colors"
+        android:summaryOn="enabled"
+        android:summaryOff="disabled" />
+        <SwitchPreference
+            android:title="Stock Clock"
+            android:key="hide_header_stock_clock"
+            android:summaryOn="Show"
+            android:summaryOff="Hide" />
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Clock Color"
+            android:key="pulldown_clock_color"
+            android:defaultValue="\#ff325D84"
+            hexValue="true"
+            alphaSlider="true"
+            android:summary="Change pulldown clock color" />
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Date Color"
+            android:key="pulldown_date_color"
+            android:defaultValue="\#ff325D84"
+            hexValue="true"
+            alphaSlider="true"
+            android:summary="Choose date color in pulldown" />
+        <SwitchPreference
+            android:title="Mod Clock"
+            android:key="hide_header_mod_clock"
+            android:summaryOn="Show"
+            android:summaryOff="Hide" />
+        <SwitchPreference
+            android:title="Mod clock Second"
+            android:key="hide_header_mod_clock_second"
+            android:dependency="hide_header_mod_clock"
+            android:summaryOn="Show"
+            android:summaryOff="Hide" />
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Mod Clock Hours Color"
+            android:key="header_mod_clock_hours_color"
+            android:dependency="hide_header_mod_clock"
+            android:defaultValue="\#ff325d84"
+            hexValue="true"
+            alphaSlider="true" />
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Mod Clock Minute Color"
+            android:key="header_mod_clock_minutes_color"
+            android:dependency="hide_header_mod_clock"
+            android:defaultValue="\#ff325d84"
+            hexValue="true"
+            alphaSlider="true" />
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Mod Clock Second Color"
+            android:key="header_mod_clock_seconds_color"
+            android:dependency="hide_header_mod_clock"
+            android:defaultValue="\#ff325d84"
+            hexValue="true"
+            alphaSlider="true" />
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Date Color"
+            android:key="date_header_color"
+            android:dependency="hide_header_mod_clock"
+            android:defaultValue="\#ff325d84"
+            hexValue="true"
+            alphaSlider="true" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Expanded Header bg Color (Default #ffe6eaed) "
+        android:key="expanded_header_bg_color"
+        android:dependency="link_colors"
+        android:defaultValue="\#ffe6eaed"
+        alphaSlider="true"
+        hexValue="true" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Quick Settings Panel bg Color"
+        android:key="quick_settings_panel_bg_color"
+        android:dependency="link_colors"
+        android:defaultValue="\#ffe6eaed"
+        alphaSlider="true"
+        hexValue="true" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Brightness bg Color"
+        android:key="brightness_background_color"
+        android:dependency="link_colors"
+        android:defaultValue="\#ffe6eaed"
+        alphaSlider="true"
+        hexValue="true" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Data Usage View bg Color"
+        android:key="data_usage_view_bg_color"
+        android:dependency="link_colors"
+        android:defaultValue="\#ffe6eaed"
+        alphaSlider="true"
+        hexValue="true" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Quick Connect bg Color"
+        android:key="quick_connect_bg_color"
+        android:dependency="link_colors"
+        android:defaultValue="\#ffe6eaed"
+        alphaSlider="true"
+        hexValue="true" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Notification Panel bg Color"
+        android:key="notification_background_color"
+        android:defaultValue="\#ffe6eaed"
+        alphaSlider="true"
+        hexValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Lockscreen Clock &amp; Date Colors" >
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Hours Text Color"
+        android:key="kg_clock_hours_color"
+        android:defaultValue="\#ffffffff"
+        hexValue="true"
+        alphaSlider="true" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Minutes Text Color"
+        android:key="kg_clock_minutes_color"
+        android:defaultValue="\#ffffffff"
+        hexValue="true"
+        alphaSlider="true" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Seconds Text Color"
+        android:key="kg_clock_second_color"
+        android:defaultValue="\#ffffffff"
+        hexValue="true"
+        alphaSlider="true" />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Date Text Color"
+        android:key="kg_date_color"
+        android:defaultValue="\#ffffffff"
+        hexValue="true"
+        alphaSlider="true" />
+    <SwitchPreference
+        android:title="Show seconds"
+        android:key="lock_seconds"
+        android:defaultValue="0"
+        android:summaryOn="Show"
+        android:summaryOff="Hide" />
+    </PreferenceCategory>
+
+    <!--<PreferenceCategory android:title="Color of Edit " >
+    <SwitchPreference
+        android:title="On/Off "
+        android:key="switch_colors"
+        android:summaryOn="On "
+        android:summaryOff="Off " />
+    <com.wubydax.romcontrol.prefs.ColorPickerPreference
+        android:title="Color the Word EDIT in Expanded View "
+        android:key="edit_color"
+        android:summary="Choose color"
+        android:defaultValue="\#ff325D84"
+        alphaSlider="true"
+        hexValue="true" />
+    </PreferenceCategory>-->
+
+    <PreferenceCategory android:title="Color of Settings/Edit Icon (in Expanded Statusbar) " >
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Settings/Edit Button Color"
+            android:key="pulldown_button_color"
+            android:defaultValue="\#ff325D84"
+            hexValue="true"
+            alphaSlider="true"
+            android:summary="Choose color " />
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Settings Divider Color"
+            android:key="header_divider_color"
+            android:defaultValue="\#ff325D84"
+            hexValue="true"
+            alphaSlider="true"
+            android:summary="Choose color " />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Settings Text Color " >
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Settings Favorites Text Color"
+            android:key="favs_text_color"
+            android:summary="Choose color "
+            android:defaultValue="\#ff252525"
+            hexValue="true"
+            alphaSlider="true" />
+        <com.wubydax.romcontrol.prefs.ColorPickerPreference
+            android:title="Settings Sections Text Color"
+            android:key="settings_sections_text_color"
+            android:summary="Choose color "
+            android:defaultValue="\#ff252525"
+            hexValue="true"
+            alphaSlider="true" />
+    </PreferenceCategory>
+
+    </PreferenceScreen>
